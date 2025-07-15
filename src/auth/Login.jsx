@@ -1,20 +1,20 @@
 import { useState } from "react";
 import { useAuth } from "./AuthContext";
-import { usePage } from "../layout/PageContext";
+import { useNavigate, Link } from "react-router-dom"; // ✅ Add Link too
 
-/** A form that allows users to log into an existing account. */
+/** A form that allows users to log in to an existing account */
 export default function Login() {
   const { login } = useAuth();
-  const { setPage } = usePage();
-
+  const navigate = useNavigate(); // ✅ replace usePage with useNavigate
   const [error, setError] = useState(null);
 
   const tryLogin = async (formData) => {
     const username = formData.get("username");
     const password = formData.get("password");
+
     try {
       await login({ username, password });
-      setPage("activities");
+      navigate("/activities"); // ✅ redirect after login
     } catch (e) {
       setError(e.message);
     }
@@ -22,7 +22,7 @@ export default function Login() {
 
   return (
     <>
-      <h1>Log in to your account</h1>
+      <h1>Login to your account</h1>
       <form action={tryLogin}>
         <label>
           Username
@@ -35,7 +35,7 @@ export default function Login() {
         <button>Login</button>
         {error && <output>{error}</output>}
       </form>
-      <a onClick={() => setPage("register")}>Need an account? Register here.</a>
+      <Link to="/register">Need an account? Register here.</Link>
     </>
   );
 }
