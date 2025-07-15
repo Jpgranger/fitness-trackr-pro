@@ -1,6 +1,5 @@
 import useMutation from "../api/useMutation";
 
-/** Users can create new activities with a name and description. */
 export default function ActivityForm() {
   const {
     mutate: add,

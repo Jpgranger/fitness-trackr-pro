@@ -2,10 +2,9 @@ import { useState } from "react";
 import { useAuth } from "./AuthContext";
 import { useNavigate, Link } from "react-router-dom";
 
-/** A form that allows users to register for a new account */
 export default function Register() {
   const { register } = useAuth();
-  const navigate = useNavigate(); // ✅ useNavigate from React Router
+  const navigate = useNavigate();
   const [error, setError] = useState(null);
 
   const tryRegister = async (formData) => {
@@ -14,7 +13,7 @@ export default function Register() {
 
     try {
       await register({ username, password });
-      navigate("/activities"); // ✅ Navigate to activities on success
+      navigate("/activities");
     } catch (e) {
       setError(e.message);
     }

@@ -16,7 +16,7 @@ export default function Navbar() {
           <a
             onClick={() => {
               logout();
-              navigate("/login"); // Redirect to login after logout
+              navigate("/login");
             }}
           >
             Log out

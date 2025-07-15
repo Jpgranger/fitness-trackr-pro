@@ -19,7 +19,6 @@ export default function ActivityList() {
             </Link>
             <p>{activity.description}</p>
             <p><strong>Created by:</strong> {activity.creator?.username}</p>
-            {/* ❌ DELETE button has been removed from here */}
           </li>
         ))}
       </ul>

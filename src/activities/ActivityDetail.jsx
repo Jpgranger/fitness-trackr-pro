@@ -4,20 +4,18 @@ import useMutation from "../api/useMutation";
 import { useAuth } from "../auth/AuthContext";
 
 export default function ActivityDetail() {
-  const { activityId } = useParams(); // Get :activityId from the URL
+  const { activityId } = useParams();
   const navigate = useNavigate();
   const { token } = useAuth();
 
-  // Fetch the activity
   const { data: activity, error } = useQuery(`/activities/${activityId}`, `activity-${activityId}`);
 
-  // Set up delete mutation
   const { mutate: deleteActivity } = useMutation(`/activities/${activityId}`, "DELETE");
 
   const handleDelete = async () => {
     try {
       await deleteActivity();
-      navigate("/activities"); // Go back to list after deleting
+      navigate("/activities"); 
     } catch (err) {
       alert("Failed to delete activity: " + err.message);
     }
